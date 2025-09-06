@@ -55,35 +55,34 @@ function App() {
   }, [running, runSimulation]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Conway's Game of Life</h1>
-        <button onClick={() => setRunning(!running)}>
-          {running ? "Stop" : "Start"}
-        </button>
-        <button onClick={() => setGrid(generateRandomBoard())}>
-          Randomize
-        </button>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(${numCols}, 20px)`,
-            gridTemplateRows: `repeat(${numRows}, 20px)`,
-          }}
-        >
-          {grid.map((row, i) =>
-            row.map((cell, j) => (
-              <div
-                key={`${i}-${j}`}
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  backgroundColor: cell === 1 ? "black" : "white",
-                  border: "1px solid gray",
-                }}
-              />
-            ))
-          )}
+    <div className="App gameoflife-app">
+      <header className="App-header gameoflife-header">
+        <h1 className='gameoflife-title'>Conway's Game of Life</h1>
+        <div className='gameoflife-ui-grid'>
+          <div className="gameoflife-controls">
+            <button className="gameoflife-btn" onClick={() => setRunning(!running)}>
+              {running ? "Stop" : "Start"}
+            </button>
+            <button className="gameoflife-btn randomize" onClick={() => setGrid(generateRandomBoard())}>
+              Randomize
+            </button>
+          </div>
+          <div
+            className="gameoflife-grid"
+            style={{
+              gridTemplateColumns: `repeat(${numCols}, 20px)`,
+              gridTemplateRows: `repeat(${numRows}, 20px)`,
+            }}
+          >
+            {grid.map((row, i) =>
+              row.map((cell, j) => (
+                <div
+                  key={`${i}-${j}`}
+                  className={`gameoflife-cell ${cell === 1 ? "alive" : ""}`}
+                />
+              ))
+            )}
+          </div>
         </div>
       </header>
     </div>
