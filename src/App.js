@@ -70,8 +70,12 @@ function App() {
           <div
             className="gameoflife-grid"
             style={{
-              gridTemplateColumns: `repeat(${numCols}, 20px)`,
-              gridTemplateRows: `repeat(${numRows}, 20px)`,
+              gridTemplateColumns: `repeat(${numCols}, minmax(12px, 1fr))`,
+              gridTemplateRows: `repeat(${numRows}, minmax(12px, 1fr))`,
+              width: "min(95vw, 520px)",
+              height: "min(95vw, 520px)",
+              maxWidth: "520px",
+              maxHeight: "520px",
             }}
           >
             {grid.map((row, i) =>
